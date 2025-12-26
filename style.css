@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+/* Базовая типографика и контейнер */
+body {
+  margin: 0;
+  font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #111;
+  background: #f7f7fb;
+}
+
+/* Обычная "карточка" для стартовой и дашборда */
+.wrap {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.06);
+}
+
+/* Широкая обёртка для редактора статьи */
+.wrap-wide {
+  max-width: none;
+  margin: 24px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 16px;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+form {
+  margin: 0 0 24px;
+}
+
+/* Сетки и группы полей */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.grid label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  gap: 6px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+/* Поля ввода */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Ряды и кнопки */
+.row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn,
+button {
+  display: inline-block;
+  padding: 10px 14px;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  font: inherit;
+}
+
+.btn.small {
+  padding: 6px 10px;
+  font-size: 14px;
+}
+
+.btn.light {
+  background: #e9e9ee;
+  color: #111;
+}
+
+/* Верхняя панель */
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* Таблица списка статей */
+table.list {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+table.list th,
+table.list td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+/* Авторские блоки */
+fieldset.author {
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+/* Ошибки */
+.error {
+  margin-top: 14px;
+  padding: 10px 12px;
+  background: #ffe9e9;
+  border: 1px solid #ffb3b3;
+  border-radius: 10px;
+  color: #700;
+}
+
+/* Подписи/серый текст */
+.muted {
+  font-size: 13px;
+  color: #666;
+}
+
+/* --------
+   Страница редактирования статьи
+   -------- */
+
+/* Общий двухколоночный layout: слева форма, справа предпросмотр */
+.edit-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* 50/50 */
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.edit-left {
+  min-width: 0;
+}
+
+/* Правая колонка с предпросмотром */
+.edit-preview {
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Окно предпросмотра: половина экрана по ширине, почти весь экран по высоте */
+.edit-preview iframe {
+  width: 100%;
+  height: calc(100vh - 140px);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.preview-placeholder {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+  background: #f5f5f9;
+  font-size: 14px;
+}
+
+.preview-hint {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Ряд "поле + кнопка 'Из предпросмотра'" */
+.field-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.field-row-textarea {
+  align-items: flex-start;
+}
+
+.field-row textarea {
+  flex: 1 1 auto;
+}
+
+/* --------
+   Drag-and-drop сортировка статей
+   -------- */
+
+.reorder-table tr.dragging {
+  opacity: .6;
+}
+
+.reorder-table .drag-handle {
+  cursor: move;
+  font-size: 18px;
+  user-select: none;
+}
+
+.reorder-table td.num {
+  width: 40px;
+}
+
+.reorder-actions {
+  align-items: center;
+}
+
+/* --------
+   Адаптив
+   -------- */
+
+@media (max-width: 900px) {
+  .wrap {
+    margin: 16px;
+    padding: 16px;
+  }
+
+  .wrap-wide {
+    margin: 8px;
+    border-radius: 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .edit-preview {
+    position: static;
+  }
+
+  .edit-preview iframe {
+    height: 300px;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+}
